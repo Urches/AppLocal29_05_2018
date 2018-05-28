@@ -1,0 +1,151 @@
+{
+   "elements": [
+      {
+         "ports": [
+            {
+               "position": "in",
+               "type": "digital",
+               "number": 1
+            },
+            {
+               "position": "in",
+               "type": "logic",
+               "number": 2
+            },
+            {
+               "position": "out",
+               "type": "digital",
+               "number": 3,
+               "observed": true
+            }
+         ],
+         "type": "neuron",
+         "number": 2,
+         "activatedBlock": "linear"
+      },
+      {
+         "ports": [
+            {
+               "position": "in",
+               "type": "digital",
+               "number": 1
+            },
+            {
+               "position": "in",
+               "type": "logic",
+               "number": 2
+            },
+            {
+               "position": "out",
+               "type": "digital",
+               "number": 3,
+               "observed": true
+            }
+         ],
+         "type": "neuron",
+         "number": 3,
+         "activatedBlock": "sigmoid"
+      },
+      {
+         "number": 1,
+         "type": "generator",
+         "properties": {
+            "type": "static",
+            "value": 10
+         },
+         "port": {
+            "position": "out",
+            "number": 1,
+            "type": "digital"
+         }
+      },
+      {
+         "ports": [
+            {
+               "position": "in",
+               "type": "digital",
+               "number": 1
+            },
+            {
+               "position": "in",
+               "type": "logic",
+               "number": 2
+            },
+            {
+               "position": "out",
+               "type": "digital",
+               "number": 3,
+               "observed": true
+            }
+         ],
+         "type": "neuron",
+         "number": 5,
+         "activatedBlock": "linear"
+      },
+      {
+         "number": 6,
+         "type": "generator",
+         "properties": {
+            "type": "static",
+            "value": 0
+         },
+         "port": {
+            "position": "out",
+            "number": 1,
+            "type": "digital"
+         }
+      }
+   ],
+   "signals": [
+      {
+         "fromElement": 2,
+         "fromPort": 3,
+         "toElement": 3,
+         "toPort": 1,
+         "signalNumber": "2331",
+         "value": 10
+      },
+      {
+         "fromElement": 5,
+         "fromPort": 3,
+         "toElement": 3,
+         "toPort": 2,
+         "signalNumber": "5332",
+         "value": 10
+      },
+      {
+         "fromElement": 1,
+         "fromPort": 1,
+         "toElement": 2,
+         "toPort": 1,
+         "signalNumber": "1121",
+         "value": 10
+      },
+      {
+         "fromElement": 1,
+         "fromPort": 1,
+         "toElement": 5,
+         "toPort": 1,
+         "signalNumber": "1151",
+         "value": 10
+      },
+      {
+         "fromElement": 6,
+         "fromPort": 1,
+         "toElement": 2,
+         "toPort": 2,
+         "signalNumber": "6122",
+         "value": 10
+      },
+      {
+         "fromElement": 6,
+         "fromPort": 1,
+         "toElement": 5,
+         "toPort": 2,
+         "signalNumber": "6152",
+         "value": 10
+      }
+   ],
+   "description": "Тестовый компонент",
+   "number": 20000
+}

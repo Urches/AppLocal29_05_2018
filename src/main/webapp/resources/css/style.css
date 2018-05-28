@@ -1,0 +1,723 @@
+@font-face {
+    font-family: 'proxima-nova';
+    src: url("../fonts/Proxima Nova/Proxima Nova Regular.otf") format('opentype');
+}
+
+* {
+    font: 14px/1 Consolas, Verdana, sans-serif;|
+    color:;
+}
+
+body {
+}
+
+header {
+    border: 1px solid grey;
+    height: 6%;
+}
+
+.static-generator {
+    background-color: springgreen;
+}
+
+.frequency-generator {
+    background-color: lightblue;
+}
+
+.container {
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(102,102,102,1);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(102,102,102,1);
+    /* box-shadow: 0px 0px 1px 3px darkmagenta; */
+    border: 1px solid black;
+    /* background: linear-gradient(to right bottom, ghostwhite, darkgray); */
+    margin: 10px;
+}
+
+.generator-container {
+    display: flex;
+    flex-direction:  column;
+    align-items:  flex-start;
+}
+
+/*general menu items styles*/
+.general-list-style {
+    /* color: white; */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    background-color: darkgray;
+}
+
+.general-list-style li {
+    border-right: 1px solid black;
+    margin-right: 0;
+    padding: 20px 20px;
+    text-decoration: none;
+    color: #333333;
+    font: 16px/1 Helvetica, Verdana, sans-serif;
+    text-transform: uppercase;
+    -webkit-transition: all 0.5s ease;
+}
+
+.general-list-style li a {
+    text-decoration: none;
+    color: #333333;
+    font: 16px/1 Helvetica, Verdana, sans-serif;
+    text-transform: uppercase;
+    -webkit-transition: all 0.5s ease;
+}
+
+.general-list-style li:last-child {
+    /* border-right: none; */
+    /* border: 1px solid black; */
+}
+
+.general-list-style  li .active {
+    font-weight: bold;
+    color: #333;
+}
+
+.general-list-style a:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #239FF0;
+}
+
+.general-list-style li:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #239FF0;
+}
+
+.ported-element:before {
+    content: attr(data-content);
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    color: gray;
+    font: caption;
+    font-size: large;
+}
+
+.port-out:before, .port-in:before {
+    content: attr(data-content);
+    position: relative;
+    top: 4px;
+    left: 12px;
+    color: gray;
+    font: caption;
+    font-size: x-small;
+}
+
+
+.append-port-button{
+    width: 100px;
+}
+
+#chart2, #chart1 {
+    /* width: 100%; */
+    height: 50%;
+    display:  flex;
+    justify-content:  baseline;
+    margin: auto;
+}
+
+
+/*body container*/
+main {
+    display: flex;
+    align-items: stretch;
+    /*height: 70%;*/
+}
+
+/*body left side*/
+main .left-side {
+    color: #717171;
+    display: flex;
+    flex-direction: column-reverse;
+    border: 1px solid black;
+    justify-content: space-between;
+    flex-grow: 2;
+    min-width: 300px;
+}
+
+/*body right side*/
+main .right-side {
+    display: flex;
+    flex: 65%;
+    flex-direction: column;
+    background-color: white;
+    flex-grow: 5;
+    border-right: 1px solid black;
+    min-height: 500px;
+}
+
+/*page bottom*/
+footer {
+    background-color: #1A1D2F;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.menu-workbench-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80%;
+    margin: 0;
+}
+
+.button-bar{
+    align-self: flex-end;
+}
+
+.elements-menu{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    border: 1px solid red;
+    align-items:  stretch;
+    justify-content:  flex-start;
+}
+
+.menu-item {
+    font-style: italic;
+    font-size: 20px;
+    border: 1px dotted rosybrown;
+    text-align: center;
+    /*display: none; */
+}
+
+.workbench-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: stretch; */
+    /* border: 1px solid blueviolet; */
+    width: 100%;
+    align-items:  stretch;
+}
+
+.chart-container, .run-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: stretch; */
+    /* border: 1px solid blueviolet; */
+    width: 100%;
+    height: 70%;
+    align-items:  stretch;
+}
+
+.chart-container, .run-container {
+    display: none;
+}
+
+.chart-container .loader-container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.workbench-bar, .chart-button-bar{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    height: 35px;
+    justify-content:  center;
+    /*border-bottom: 1px solid black;*/
+    /* border-top:  none; */
+    /* border-radius: 0 0 20% 20%; */
+    /* flex: 30px; */
+    background-color: white;
+}
+
+.diagram-warrings {
+    display: none;
+}
+
+.workbench-bar li {
+    padding: 10px 10px;
+    font: 12px/1 Helvetica, Verdana, sans-serif;
+    border: 1px solid black;
+    background-color: gainsboro
+}
+
+.workbench-bar li:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #285e8e;
+}
+
+.neuron-properties-container {
+    display: flex;
+    /* border: 1px solid red; */
+    flex-direction: column;
+    min-width: 360px;
+    /* margin: 10px; */
+    /* align-items: baseline; */
+    /* justify-content: flex-start; */
+    /* background: linear-gradient(to right bottom, ghostwhite, currentColor); */
+}
+
+.neuron-info-container {
+    display: flex;
+    justify-self: flex-end;
+}
+
+.workbench{
+    /* flex-grow: 5; */
+    border: 1px solid black;
+    /* display: flex; */
+    /* min-height: 100%; */
+    /* width: 80%; */
+    height: 70%;
+    flex-direction: row;
+    /* height: 500px; */
+    display: flex;
+}
+
+.workflow {
+    /* width: 80%; */
+    display:  flex;
+}
+
+.in-block, .out-block{
+    width: 10%;
+    border: 1px solid pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-basis: initial;
+}
+
+.hidden{
+    display: none;
+}
+
+.json-view-field {
+    height: 200px;
+    margin: 0;
+    border: 1px solid black;
+    scroll-behavior: auto;
+    max-width: 100%;
+}
+
+.execution-worrise{
+    display: flex;
+    flex-direction: column-reverse;
+    /* align-self: stretch; */
+    justify-self: flex-start;
+    align-items: center;
+    margin: 10px;
+}
+
+[element-type="generator"]{
+    position: absolute;
+    display: flex;
+    border-radius: 15%;
+    height: 30px;
+    width: 40px;
+    border: 1px solid green;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+[element-type="foreignComponent"]{
+    position: absolute;
+    display: flex;
+    border-radius: 15%;
+    height: 80px;
+    width: 100px;
+    border: 1px solid #a6e1ec;
+    background-color: khaki;
+    justify-content: space-between;
+    align-items: center;
+}
+
+[element-type="delay"]{
+    position: absolute;
+    display: flex;
+    height: 60px;
+    width: 30px;
+    border: 1px solid #2a6496;
+    background-color: papayawhip;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    background-color: gainsboro;
+}
+
+.unsym-generator-time-range-value-item{
+    display: flex;
+    flex-direction: column;
+}
+
+.neuron-node{
+    display: flex;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    border: 1px solid green;
+    background-color: aqua;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.linear-af-neuron{
+    background-color: darkturquoise;
+}
+
+.sigmoid-af-neuron{
+    background-color: darkseagreen;
+}
+
+.linear_bounder-af-neuron {
+     background-color: #46b8da;
+ }
+
+.threshold-af-neuron {
+    background-color: #B0C4DE;
+}
+
+.in-ports-properties-block{
+    display: flex;
+    flex-direction: column;
+}
+
+.port-out {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    background-color:grey;
+}
+
+.in-ports {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.port-in {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    align-self: flex-start;
+    background-color:grey;
+}
+
+.draggable {
+    cursor: pointer;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    align-content: center;
+}
+
+/* Modal Content/Box */
+.scene-container {
+    display: flex;
+    justify-content: center;
+
+}
+
+.inner-container {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: gainsboro;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border-radius: 7%;
+    border: 1px solid #888;
+    width: max-content;
+}
+
+.signal-button-bar{
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    position: absolute;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    /* align-self: flex-end; */
+    font-size: 20px;
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.template{
+    display: none;
+}
+
+.neuron-properties-container .neuron-name, .generator-name {
+    align-self: center;
+    border-bottom: 1px solid green;
+    display: block;
+    /* justify-self:  stretch; */
+}
+
+.sub-container {
+    /* padding: 0 0 0 20px; */
+    margin: 5px;
+    display: flex;
+    align-items: flex-end;
+    /* margin: auto; */
+    flex-direction: column;
+}
+
+.sub-container > div {
+    margin: 5px;
+}
+
+input[type="button"] {
+    -moz-box-shadow: 1px 1px 8px 0px #899599;
+    -webkit-box-shadow: 1px 1px 8px 0px #899599;
+    box-shadow: 1px 1px 8px 0px #899599;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+    background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+    background-color:#ededed;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+    border:1px solid #d6bcd6;
+    display:inline-block;
+    cursor:pointer;
+    color:#1d6375;
+    font-family:Arial;
+    font-size: 12px;
+    padding:7px 25px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #e1e2ed;
+    outline:  none;
+}
+input[type="button"]:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+    background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+    background-color:#bab1ba;
+}
+input[type="button"]:active {
+    position:relative;
+    top:1px;
+}
+
+.port-container, .af-properties-block {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+    align-items: baseline;
+}
+
+.port-container > * {
+    margin: 0 0 0 3px;
+}
+
+label {
+    /* font-style:italic; */
+    padding: 0 0 0 5px;
+    margin: 5px;
+    max-width: 350px
+}
+
+.container > label {
+    font-size:larger;
+}
+
+.container > * > label {
+    font-size:larger;
+    padding: 0 0 0 20px;
+}
+
+.generator-impl-container{
+    /* display: flex; */
+    /* justify-content:  stretch; */
+}
+
+.append-button{
+    margin: 10px 0 0 0;
+}
+
+.asymmetrical-generator-container {
+    /* display: flex; */
+    /* align-items: flex-end; */
+    /* margin:  auto; */
+    /* flex-direction:  column; */
+}
+
+.append-port-button{
+    margin: 0 0 0 7px;
+}
+
+.sub-container .values{
+    margin: 15px 0 0 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.frequency-generator-container{
+    align-items: flex-start;
+}
+
+.static-generator-container{
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 50px;
+    height: 50px;
+    margin:  auto;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.component-container-item{
+    display: flex;
+}
+
+.component-container-item:hover{
+    background-color: #3276b1;
+    transition-duration: 8ms;
+    transition: background-color;
+    color: white;
+}
+
+.load-component-scene.container {
+    background-color: white;
+    border: unset;
+}
+
+.load-component-scene .button-bar > input {
+    border: 1px solid black;
+    border-radius: 0;
+    color: black;
+}
+
+.chart-properties-container input {
+    margin: 5px;
+}
+
+.description-field {
+    display: flex;
+}
+
+.save-component-scene.container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.foreign-component-view, .chart-properties-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.components-grid{
+    display: flex;
+    flex-direction: column;
+}
+
+.components-grid .component-container-item{
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.components-grid:hover {
+    cursor: pointer;
+}
+
+.load-component-scene{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal-window .inner-container{
+    border: 1px solid black;
+}
+.lines-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.delayTime {
+    margin: 5px 5px 5px 5px;
+}
+
+.delay-name{
+    align-self: center;
+    border-bottom: 1px solid green;
+    display: block;
+}
+
+.delay-properties-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 330px;
+}
+
+.generator-select label {
+    padding: 0 0 0 5px;
+}
+
+[element-type="generator"] .asymmetrical-generator {
+    background-color: #bab1ba;
+    border: 1px solid lavender
+}

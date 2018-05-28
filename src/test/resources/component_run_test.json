@@ -1,0 +1,156 @@
+{
+  "elements": [
+    {
+      "ports": [
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 1,
+          "observed": false
+        },
+        {
+          "position": "in",
+          "type": "logic",
+          "number": 2,
+          "observed": false
+        },
+        {
+          "position": "out",
+          "type": "digital",
+          "number": 3,
+          "observed": true
+        }
+      ],
+      "type": "neuron",
+      "number": 2,
+      "activatedBlock": "linear",
+      "html": {}
+    },
+    {
+      "ports": [
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 1,
+          "observed": false
+        },
+        {
+          "position": "in",
+          "type": "logic",
+          "number": 2,
+          "observed": false
+        },
+        {
+          "position": "out",
+          "type": "digital",
+          "number": 3,
+          "observed": true
+        }
+      ],
+      "type": "neuron",
+      "number": 3,
+      "activatedBlock": "sigmoid"
+    },
+    {
+      "ports": [
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 1,
+          "observed": false
+        },
+        {
+          "position": "in",
+          "type": "logic",
+          "number": 2,
+          "observed": false
+        },
+        {
+          "position": "out",
+          "type": "digital",
+          "number": 3,
+          "observed": true
+        }
+      ],
+      "type": "neuron",
+      "number": 4,
+      "activatedBlock": "sigmoid",
+      "html": {}
+    },
+    {
+      "number": 5,
+      "type": "generator",
+      "properties": {
+        "type": "static",
+        "value": "10"
+      },
+      "port": {
+        "position": "out",
+        "number": 1,
+        "type": "digital",
+        "observed": false
+      },
+      "html": {}
+    },
+    {
+      "number": 6,
+      "type": "generator",
+      "properties": {
+        "type": "static",
+        "value": 5
+      },
+      "port": {
+        "position": "out",
+        "number": 1,
+        "type": "digital",
+        "observed": false
+      }
+    }
+  ],
+  "signals": [
+    {
+      "fromElement": 2,
+      "fromPort": 3,
+      "toElement": 3,
+      "toPort": 1,
+      "signalNumber": "2331"
+    },
+    {
+      "fromElement": 4,
+      "fromPort": 3,
+      "toElement": 3,
+      "toPort": 2,
+      "signalNumber": "4332"
+    },
+    {
+      "fromElement": 5,
+      "fromPort": 1,
+      "toElement": 4,
+      "toPort": 2,
+      "signalNumber": "5142"
+    },
+    {
+      "fromElement": 5,
+      "fromPort": 1,
+      "toElement": 2,
+      "toPort": 2,
+      "signalNumber": "5122"
+    },
+    {
+      "fromElement": 6,
+      "fromPort": 1,
+      "toElement": 2,
+      "toPort": 1,
+      "signalNumber": "6121"
+    },
+    {
+      "fromElement": 6,
+      "fromPort": 1,
+      "toElement": 4,
+      "toPort": 1,
+      "signalNumber": "6141"
+    }
+  ],
+  "description": "Тестовый компонент",
+  "number" : 20001
+}

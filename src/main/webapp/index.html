@@ -1,0 +1,350 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Load c3.css -->
+    <link href="resources/js/libs/c3/c3.css" rel="stylesheet">
+    <!-- Load d3.js and c3.js -->
+    <script src="resources/js/libs/d3/d3.min.js" charset="utf-8"></script>
+    <script src="resources/js/libs/c3/c3.min.js"></script>
+    <script src="resources/js/libs/jquery-3.3.1.min.js"></script>
+    <script src="resources/js/draganddrop/DragManager.js"></script>
+    <script src="resources/js/properties/Properties.js"></script>
+
+    <link rel="stylesheet" href='resources/css/style.css'>
+
+    <link rel="stylesheet" href='resources/css/modalWindows.css'>
+    <link rel="stylesheet" href="resources/css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href='resources/blocks/dropdown/style.css'>
+    <script src='resources/blocks/dropdown/index.js'></script>
+
+
+    <script src="resources/js/support/polyfils/polyfils.js"></script>
+    <script src="resources/js/support/events/EventEmitter.js"></script>
+    <script src="resources/js/support/utils/HtmlUtiles.js"></script>
+    <script src="resources/js/support/utils/ArrayUtils.js"></script>
+    <script src="resources/js/support/Test.js"></script>
+
+    <script src="resources/js/model/Port.js"></script>
+    <script src="resources/js/model/PortedElement.js"></script>
+    <script src="resources/js/model/Neuron.js"></script>
+    <script src="resources/js/model/Signal.js"></script>
+    <script src="resources/js/model/Component.js"></script>
+    <script src="resources/js/model/Delay.js"></script>
+    <script src="resources/js/model/ConnectionInspector.js"></script>
+    <script src="resources/js/model/generators/Generator.js"></script>
+    <script src="resources/js/model/ForeignComponent.js"></script>
+
+    <script src="resources/js/controllers/ScriptViewController.js"></script>
+    <script src="resources/js/controllers/Controller.js"></script>
+
+    <script src="resources/js/view/html_renders/ElementHtmlRender.js"></script>
+    <script src="resources/js/view/html_renders/SignalHtmlRender.js"></script>
+    <script src="resources/js/view/html_renders/PortHtmlRender.js"></script>
+    <script src="resources/js/view/html_renders/NeuronHtmlRender.js"></script>
+    <script src="resources/js/view/html_renders/ComponentHtmlRender.js"></script>
+
+    <script src="resources/js/view/modalwindow/ModalWindow.js"></script>
+    <script src="resources/js/view/modalwindow/scenes/Scene.js"></script>
+    <script src="resources/js/view/modalwindow/scenes/LoadComponentScene.js"></script>
+    <script src="resources/js/view/ForeignComponentView.js"></script>
+
+    <script src="resources/js/view/generators/StaticGeneratorView.js"></script>
+    <script src="resources/js/view/generators/AsymmetricalGeneratorView.js"></script>
+    <script src="resources/js/view/generators/GeneratorPropertiesView.js"></script>
+    <script src="resources/js/view/SignalPropertiesView.js"></script>
+    <script src="resources/js/view/DelayPropertiesView.js"></script>
+    <script src="resources/js/view/NeuronPropertiesView.js"></script>
+    <script src="resources/js/view/run/runWorriesView.js"></script>
+    <script src="resources/js/view/component/ComponentView.js"></script>
+    <script src="resources/js/view/chart/ChartView.js"></script>
+    <script src="resources/js/view/chart/ChartPropertiesView.js"></script>
+    <script src="resources/js/view/run/RunView.js"></script>
+
+    <script src="resources/js/view/Page.js"></script>
+    <script src="resources/js/core.js"></script>
+</head>
+<title>
+    Система формирования
+</title>
+<body>
+<header>
+    <ul class="general-list-style">
+        <li class='load-component menu-item'>
+            Выбрать преобразователь
+        </li>
+        <li class='new-component menu-item'>
+            Новый преобразователь
+        </li>
+        <li class='configure-component menu-item'>
+            Конфигурирование
+        </li>
+        <li class='chart menu-item'>
+            Диаграмма
+        </li>
+        <li class='structure-load menu-item'>
+            Сформировать структуру
+        </li>
+        <li class='save-component menu-item'>
+            Сохранить модель
+        </li>
+    </ul>
+
+</header>
+<main>
+    <div class='templates template'>
+
+        <!-- Neuron properties view -->
+        <div class="in-port-container">
+            <label class='port-number-label'>Порт с номером: </label>
+            <select class='port-type-select'>
+                <option>цифровой</option>
+                <option>логический</option>
+                <option>частотный</option>
+                <option>временной интервал</option>
+            </select>
+            <input type="checkbox" class='observed-checkbox'/>Отслеживать
+            <i class="fa fa-times close" aria-hidden="true"></i>
+        </div>
+
+        <div class="out-port-container">
+            <label class='port-number-label'>Порт с номером: </label>
+            <select class='port-type-select'>
+                <option>цифровой</option>
+                <option>логический</option>
+                <option>частотный</option>
+                <option>временной интервал</option>
+            </select>
+            <input type="checkbox" class='observed-checkbox'/>Отслеживать
+        </div>
+
+        <div class="neuron-properties-container template">
+            <label class="label neuron-name">Нейрон с номером: </label>
+            <div class="af-properties-block">
+                <label>Функция активации</label>
+                <select class='af-type-select'>
+                    <option>линейная</option>
+                    <option>линейно-ограниченная</option>
+                    <option>сигмоидальная</option>
+                    <option>пороговая</option>
+                </select>
+            </div>
+            <div class="ports-properties-block">
+                <label class='in-ports-label'>Входные порты</label>
+                <label class="out-port-label">Выходные порты</label>
+            </div>
+            <input type="button" value="Добавить" class="append-port-button">
+            <div class="button-bar">
+                <input type="button" value="OK" class="neuron-properties-confirm">
+                <input type="button" value="Отмена" class="neuron-properties-rollback">
+            </div>
+        </div>
+
+        <!-- delay  properties container -->
+        <div class="delay-properties-container template">
+            <label class="label delay-name">Задержка с номером: </label>
+            <div>
+                <label class='time-label'>Время задержки:</label>
+                <input type="text" class="delayTime">
+            </div>
+            <div class="ports-properties-block">
+                <label class='in-port-label'>Входной порт</label>
+                <label class="out-port-label">Выходной порт</label>
+            </div>
+            <div class="button-bar">
+                <input type="button" value="OK" class="delay-properties-confirm">
+                <input type="button" value="Отмена" class="delay-properties-rollback">
+            </div>
+        </div>
+
+        <!-- chart  properties container -->
+        <div class="chart-properties-container container">
+            <label class="label">Время моделирования (мс)</label>
+            <input type="number" class="duration-value">
+            <label class="label">Шаг моделирования (мс)</label>
+            <input type="number" class="step-value">
+            <div class="button-bar">
+                <input type="button" value="OK" class="chart-properties-confirm">
+                <input type="button" value="Отмена" class="chart-properties-rollback">
+            </div>
+        </div>
+
+        <div class='load-component-scene container'>
+            <label>Преобразователи</label>
+            <div class="loader"></div>
+            <div class="components-grid"></div>
+            <!--<div class="button-bar">-->
+                <!--<input type="button" value="previous">-->
+                <!--<input type="button" value="next">-->
+            <!--</div>-->
+        </div>
+
+        <div class='foreign-component-view container'>
+            <label class="foreign-component-number">Номер преобразователя: </label>
+            <label>Описание преобразователя</label>
+            <label class="foreign-component-description"></label>
+            <div class="button-bar">
+                <input type="button" class="upload-component-btn" value="Загрузить преобразователь">
+            </div>
+        </div>
+
+        <!-- save view container -->
+        <div class='save-component-scene container'>
+            <label>Введите описание</label>
+            <input type="text" class="description-field"/>
+        </div>
+
+        <!--Generator view container-->
+        <div class='generator-container container'>
+            <label class='label generator-name'>Генератор с номером: </label>
+            <div class='generator-select'>
+                <label class='label'>Тип генератора: </label>
+                <select class='generators-type'>
+                    <option>статический</option>
+                    <option>асимметричный</option>
+                    <option>частотный</option>
+                </select>
+            </div>
+            <div class='generator-impl-container'>
+
+            </div>
+            <div class="button-bar">
+                <input class="ok-button" type="button" value="OK">
+                <input class="cancel-button" type="button" value="Отмена">
+            </div>
+        </div>
+
+        <!--frequency view container-->
+        <div class='frequency-generator-container sub-container'>
+            <div>
+                <label class='label'>Начальное значение: </label>
+                <select class='generators-type'>
+                    <option>1</option>
+                    <option selected>0</option>
+                </select>
+            </div>
+            <div>
+                <label class='label'>Интервал: </label>
+                <input type="number"/>
+            </div>
+        </div>
+
+        <!--asymmetrical view container-->
+        <div class='asymmetrical-generator-container sub-container'>
+            <label class='label'>Введите значение </label>
+            <div>
+                <label>Время от</label>
+                <input class="fromTime" type="number"/>
+            </div>
+            <div>
+                <label>Время до</label>
+                <input class="toTime" type="number"/>
+            </div>
+            <div>
+                <label>Значение</label>
+                <input class="value" type="number"/>
+            </div>
+            <input class="append-button" type="button" value="append"/>
+            <div class="values"></div>
+        </div>
+
+        <!--static view container-->
+        <div class='static-generator-container sub-container'>
+            <label class='label'>Введите значение: </label>
+            <input class='value' type="number"/>
+        </div>
+
+
+    </div>
+
+    <!-- Generators for neuron view -->
+    <div class="generators-container container template" style="border: 1px solid green">
+    </div>
+
+    <div class='generators-container-item set-generator template'>
+        <label class='label'></label>
+        <input class="generator-add-button" type="button" value="set generator">
+    </div>
+
+    <div class='generators-container-item signal-setted template'>
+        <label class='label tooltip' data-tooltip="Signal setted!">Port number: 2</label>
+        <input class="generator-add-button" type="button" value="set generator" disabled>
+    </div>
+    <div class='generators-container-item change-generator template'>
+        <label class='label'>Port number: 3</label>
+        <input class="generator-add-button" type="button" value="change generator">
+    </div>
+    </div>
+
+
+    <!-- The Modal -->
+    <div class="modal-window">
+        <div class="inner-container">
+            <span class="close">×</span>
+            <div class="scene-container">
+            </div>
+            <div class="button-bar">
+                <input type="button" class="saveBtn" value="Сохранить">
+                <input type="button" class="cancelBtn" value="Отмена">
+            </div>
+        </div>
+    </div>
+
+    <aside class="left-side">
+        <!--<div class="menu-item neuron-item draggable">Neuron</div>-->
+        <!--<label style="align-self: center">Элемент не выбран</label>-->
+        <div class="execution-worrise"></div>
+        </div>
+
+    </aside>
+    <section class="right-side">
+        <div class='workbench-container'>
+        <div class='workbench'>
+            <div class="dropdown">
+                <button class="dropbtn">Действия</button>
+                <ul class="dropdown-content general-list-style workbench-bar">
+                    <li class='neuron-add-button load-component menu-item'>
+                        Добавить нейрон
+                    </li>
+                    <li class='delay-add-button menu-item'>
+                        Добавить задержку
+                    </li>
+                    <li class='generator-add-button menu-item'>
+                        Добавить генератор
+                    </li>
+                    <li class='component-add-button menu-item'>
+                        Добавить преобразователь
+                    </li>
+                    <li class='element-drop-button new-component menu-item'>
+                        Удалить элемент
+                    </li>
+                </ul>
+            </div>
+            <div class='workflow droppable'></div>
+        </div>
+        <div class='chart-container'>
+            <label class="diagram-warrings">Идут вычисления...</label>
+            <div class="loader-container">
+                <label>Идут вычисления...</label>
+                <div class="loader"></div>
+            </div>
+            <div class="lines-container">
+                <!--<div id='chart1'></div>-->
+                <!--<div id='chart2'></div>-->
+            </div>
+
+        </div>
+        <div class='run-container'>
+
+        </div>
+        </div>
+
+    </section>
+</main>
+<footer>
+    <textarea class="json-view-field"></textarea>
+</footer>
+</body>
+
+</html>
