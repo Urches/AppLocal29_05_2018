@@ -21,7 +21,7 @@ public class LinearFunction extends ActivatedFunction {
 
     @Override
     public double getResult() {
-        double value = Arrays.stream(values).reduce((aDouble, aDouble2) -> aDouble + aDouble2).get();
+        double value = Arrays.stream(values).reduce(Double::sum).get();
         return value * k;
     }
 

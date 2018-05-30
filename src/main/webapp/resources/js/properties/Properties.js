@@ -55,7 +55,7 @@ class Properties {
         };
 
         this.chartProperties = {
-            duration: 1000,
+            duration: 100,
             step: 10,
             type: 'inherit'
         };

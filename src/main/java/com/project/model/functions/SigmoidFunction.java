@@ -16,7 +16,7 @@ public class SigmoidFunction extends ActivatedFunction {
      */
     @Override
     public double getResult() {
-        double value = Arrays.stream(values).reduce((aDouble, aDouble2) -> aDouble + aDouble2).get();
+        double value = Arrays.stream(values).reduce(Double::sum).get();
         return 1 / (1 + Math.exp(t * value));
     }
 

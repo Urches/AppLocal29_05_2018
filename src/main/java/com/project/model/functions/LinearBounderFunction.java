@@ -25,7 +25,7 @@ public class LinearBounderFunction extends ActivatedFunction {
 
 	@Override
 	public double getResult() {
-		double value = Arrays.stream(values).reduce((aDouble, aDouble2) -> aDouble + aDouble2).get();
+		double value = Arrays.stream(values).reduce(Double::sum).get();
 
 		if (value >= bottom || value <= top) {
 			return value;

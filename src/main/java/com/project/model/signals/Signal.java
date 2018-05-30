@@ -101,15 +101,6 @@ public class Signal implements Valuable {
 		return type;
 	}
 
-//	public void setType(ConnectionTypeEnum type) {
-//		this.type = type;
-//	}}
-
-//	public void setKeyValue(int value) {
-//		this.key = KeysController.SINGLTONE.getKeyOnValue(value, this);
-//	}
-
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

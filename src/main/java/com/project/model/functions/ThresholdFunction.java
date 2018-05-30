@@ -17,12 +17,11 @@ public class ThresholdFunction extends ActivatedFunction {
 
 	/**
 	 * Mapping of parent values array is:
-	 * value = values[0];
-	 * q = values[1];
+	 * value = sum(values);
 	 */
 	@Override
 	public double getResult() {
-		double value = Arrays.stream(values).reduce((aDouble, aDouble2) -> aDouble + aDouble2).get();
+		double value = Arrays.stream(values).reduce(Double::sum).get();
 		return q < value ? 1 : 0;
 	}
 }

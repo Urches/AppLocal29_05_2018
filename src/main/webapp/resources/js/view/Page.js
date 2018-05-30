@@ -69,6 +69,11 @@ class Page {
         this.modalWindow.show();
     }
 
+    showAlert(message){
+        this.modalWindow.setScene(new Alert(this.modalWindow, message));
+        this.modalWindow.show();
+    }
+
     showChart() {
         this.componentView.close();
         this.runView.close();
@@ -111,5 +116,34 @@ class SaveComponentScene {
         this.component.description = this.descriptionHtml.value;
         this.controller.saveComponent(this.component);
     }
+}
 
+class Alert{
+    constructor(modalWindow, message) {
+        this.modalWindow = modalWindow;
+        this.message = message;
+        console.log(this.message);
+        this.container = null;
+        this.isShowed = false;
+        this.container = document.querySelector('.alert-container').cloneNode(true);
+        //smell!
+        this.modalWindow.modal.querySelector(".saveBtn").style.display = 'none';
+        this.modalWindow.modal.querySelector(".cancelBtn").value = "OK";
+    }
+
+    init(){
+        this.container.querySelector('.alert-message').innerText = this.message;
+    }
+
+    close(){
+        console.log('close');
+    }
+
+    cancel(){
+        console.log('cancel');
+    }
+
+    save(){
+        console.log('save');
+    }
 }

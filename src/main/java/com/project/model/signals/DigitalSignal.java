@@ -19,7 +19,6 @@ public class DigitalSignal extends Signal {
 	public void setValue(Double value) {
 		this.value = (double) value.intValue();
 		this.bit = Integer.bitCount(this.value.intValue());
-		
 	}
 
 	@Override

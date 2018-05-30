@@ -61,7 +61,6 @@ class  DelayPropertiesView {
     }
 
     update() {
-        //console.log(this.isShowed);
         if (this.isShowed) {
             document.querySelector('.left-side').removeChild(this.container);
             this.container = this._containerGenerate();

@@ -29,6 +29,10 @@ public class ComponentRunner implements ElementRunner {
 
     private ModelTimer timer;
 
+    public ModelTimer getTimer() {
+        return this.timer;
+    }
+
     public ComponentRunner(Component component) {
         this.component = component;
         manager.setComponent(component);
@@ -159,33 +163,4 @@ public class ComponentRunner implements ElementRunner {
             return runValue;
         }).collect(Collectors.toSet());
     }
-
-    public ModelTimer getTimer() {
-        return this.timer;
-    }
-
-
-    // Set<Neuron> neurons = getNeuronsInOrder();
-    // Set<NeuronRunConfig> neuronsConfig = config.getNeuronConfigs();
-    // for (Neuron neuron : neurons) {
-    // NeuronRunConfig neuronConfig = neuronsConfig.stream().filter(n ->
-    // n.getTargetNumber() == neuron.getNumber())
-    // .findFirst().get();
-    // neuronExecutors.add(new NeuronRunExecutor(neuron, neuronConfig));
-    // }
-
-//    private Set<Neuron> getNeuronsInOrder() {
-//	int[] order = config.getExecutionOrder();
-//	if (order.length != component.getElements().size()) {
-//	    System.out.println(
-//		    "(order.length != component.getNeurons().size()" + (order.length != component.getElements().size()));
-//	}
-
-//	Set<Neuron> neurons = new LinkedHashSet<>();
-//	for (int i : order) {
-//	    //neurons.add(component.getNeuron(i));
-//	}
-//	return neurons;
-//    }
-//
 }

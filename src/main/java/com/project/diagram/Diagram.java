@@ -23,7 +23,7 @@ public class Diagram {
 			});
 			return line;
 		}).collect(Collectors.toCollection (LinkedHashSet::new));
-		//System.out.println(this.lines);
+		System.out.println(this.lines);
 	}
 
 	public Set<DiagramLine> getLines() {

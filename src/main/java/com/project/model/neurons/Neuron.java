@@ -44,13 +44,6 @@ public class Neuron extends Element {
 	public int getNumber(){
 		return number;
 	}
-//	public double run(){
-//		Double[] values = Arrays.stream(getInPorts()).map(p-> p.getSiganal().getValue()).toArray(Double[]::new);
-//		activatedFunction.setAllIn(values[0], Arrays.copyOfRange(values, 1, values.length));
-//		double result = getActivatedFunction().getResult();
-//		Arrays.stream(getOutPorts()).forEach(p -> p.getSiganal().setValue(result));
-//		return result;
-//	}
 	
 	public Set<Port> getInPorts() {
 		return ports.stream().filter(p -> p.getPosition() == PortPosition.IN)
@@ -61,28 +54,10 @@ public class Neuron extends Element {
 		return ports.stream().filter(p -> p.getPosition() == PortPosition.OUT)
 				.collect(Collectors.toSet());
 	}
-	
-//	public void addInPort(Port port){
-//		inPorts.add(port);
-//	}
-//	
-//	public void addOutPort(Port port){
-//		outPorts.add(port);
-//	}
-	
+
 	public void addPort(Port port){
 		ports.add(port);
 	}
-
-//	private void registratePorts(Port[] ports) {
-//		for (Port port : ports) {
-//			port.setNeuron(this);
-//		}
-//	}
-//	
-//	public Port[] getGeneratorPorts(){
-//		return Arrays.stream(inPorts).filter(p -> p.getSiganal().getPosition().equals(SignalPositionEnum.START)).toArray(Port[]::new);
-//	}
 
 	public String getName() {
 		return name;

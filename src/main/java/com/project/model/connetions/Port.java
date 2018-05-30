@@ -23,10 +23,6 @@ public class Port {
 		this.type = type;
 	}
 
-	public Port(){
-
-	}
-
 	public Element getElement() {
 		return element;
 	}
