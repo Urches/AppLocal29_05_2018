@@ -713,9 +713,9 @@ label {
     min-width: 330px;
 }
 
-.generator-select label {
-    padding: 0 0 0 5px;
-}
+/*.generator-select label {*/
+    /*padding: 0 0 0 5px;*/
+/*}*/
 
 [element-type="generator"] .asymmetrical-generator {
     background-color: #bab1ba;

@@ -33,10 +33,8 @@ class ComponentHtmlRender extends ElementHtmlRender {
 
     _getForeignComponentsHtml() {
         let foreignComponents = this.component.getForeignComponents();
-        console.log(foreignComponents);
         let foreignComponentsHtml = foreignComponents.map(foreignComponent => {
             let div = document.createElement('div');
-            console.log(foreignComponent);
             this.setElementType(div, foreignComponent);
             this.setElementNumber(div, foreignComponent);
             div.className = foreignComponent.type + '-foreignComponent draggable ported-element';

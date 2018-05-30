@@ -12,7 +12,7 @@ class ChartView {
             if(diagramObj.diagram.length > 0){
                 this.drawDiagram(diagramObj);
             } else {
-                alert("Диаграмма пуста!");
+                this.controller.page.showAlert("Диаграмма пуста!");
             }
 
         });

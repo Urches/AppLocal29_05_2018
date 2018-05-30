@@ -9,7 +9,7 @@ class Properties {
                 },
                 {
                     position: 'in',
-                    type: 'logic',
+                    type: 'digital',
                     number: 2
                 },
                 {
@@ -45,6 +45,7 @@ class Properties {
 
         this.defaultGeneratorObj = {
             type: 'generator',
+            signalType: 'digital',
             static: {
                 type: 'static',
                 properties: {

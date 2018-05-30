@@ -23,6 +23,7 @@ class GeneratorPropertiesView {
             this.generator = null;
             this.currrentStage = null;
             this.genType = null;
+            this.signalType = null;
         }
     }
 
@@ -41,10 +42,12 @@ class GeneratorPropertiesView {
     _containerGenerate(){
         let container = document.querySelector('.generator-container').cloneNode(true);
         //let selectedOption;
-        let options = container.querySelectorAll('.generator-select select option');
+        let options = container.querySelectorAll('.generator-select .generators-type option');
         container.querySelector('.generator-name').innerText += this.generator.number;
         if(!this.genType) this.genType = this.generator.properties.type;
+        if(!this.signalType) this.signalType = this.generator.properties.signalType;
         let genType = this.genType;
+        let signalType = this.signalType;
         if(genType == 'asymmetrical'){
             this.setStage(new AsymmetricalGeneratorView(this, this.generator));
             container.querySelector('.generator-impl-container').appendChild(this.currrentStage.getContainer());
@@ -61,9 +64,22 @@ class GeneratorPropertiesView {
                 option.setAttribute('selected','selected');
             }
         });
-        //options.item(options.selectedIndex).setAttribute('selected','selected');
-        //console.log(options.item(options.selectedIndex).innerText);
-        //selectedOption.setAttribute('selected','selected');
+        container.querySelector('select').onchange = (event) => {
+            let genTypeRu = Array.from(options).find(option => option.selected == true).innerText;
+            console.log(genTypeRu);
+            this.genType  = this.componentView.properties.getKeyByValue(this.componentView.properties.generatorsTypes, genTypeRu);
+            console.log(this.genType);
+            this.update();
+        };
+
+        let signalOptions = container.querySelectorAll('.generator-select .signals-type option');
+        let signNameRu = this.componentView.properties.signalTypes.get(signalType);
+        console.log(signNameRu);
+        Array.from(signalOptions).forEach(option => {
+            if(option.innerText == signNameRu){
+                option.setAttribute('selected','selected');
+            }
+        });
 
         container.querySelector('.ok-button').onclick = (event) => {
             this.save();
@@ -71,14 +87,6 @@ class GeneratorPropertiesView {
 
         container.querySelector('.cancel-button').onclick = (event) => {
             this.close();
-        };
-
-        container.querySelector('select').onchange = (event) => {
-            let genTypeRu = Array.from(options).find(option => option.selected == true).innerText;
-            console.log(genTypeRu);
-            this.genType  = this.componentView.properties.getKeyByValue(this.componentView.properties.generatorsTypes, genTypeRu);
-            console.log(this.genType);
-            this.update();
         };
 
         return container;
@@ -114,12 +122,14 @@ class GeneratorPropertiesView {
         if(!obj.properties){
             obj.properties = {};
         }
-        let options = this.container.querySelectorAll('.generator-select select option');
-        let option = Array.from(options).find(option => option.selected == true);
+        let options = this.container.querySelectorAll('.generator-select .generators-type option');
+        let signalOptions = this.container.querySelectorAll('.generator-select .signals-type option');
 
+        let option = Array.from(options).find(option => option.selected == true);
+        let signalOption = Array.from(signalOptions).find(option => option.selected == true);
         console.log(option.innerText);
         obj.properties.type = this.componentView.properties.getKeyByValue(this.componentView.properties.generatorsTypes, option.innerText);
-
+        obj.properties.signalType = this.componentView.properties.getKeyByValue(this.componentView.properties.signalTypes, signalOption.innerText);
         return obj;
     }
 }

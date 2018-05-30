@@ -99,8 +99,9 @@ class ComponentView {
 
         //add neuron button clicked in button bar
         document.querySelector('.workbench-bar .neuron-add-button').addEventListener('click', function (e) {
-            self.addNeuron();
-            self.update();
+            if(self.addNeuron()){
+                self.update();
+            }
         });
 
         //drop button clicked in button bar
@@ -236,20 +237,19 @@ class ComponentView {
     }
 
     addGenerator(coord = {
-        xAxis: 350,
+        xAxis: 550,
         yAxis: 150
     }){
        let number = this.component.addGenerator(this.properties.defaultGeneratorObj.static);
         this.putCoordinates(
             number,
-            this.properties.defaultGeneratorObj.type,
             coord.xAxis,
             coord.yAxis
         );
     }
 
     addDelay(coord = {
-        xAxis: 350,
+        xAxis: 550,
         yAxis: 150
     }) {
         console.log('add delay!');
@@ -264,7 +264,7 @@ class ComponentView {
     //Add logic
     //rework!!!
     addNeuron(coord = {
-        xAxis: 350,
+        xAxis: 550,
         yAxis: 150
     }) {
         if(this.component){
@@ -274,8 +274,10 @@ class ComponentView {
                 coord.xAxis,
                 coord.yAxis
             );
+            return true;
         } else {
             this.componentUnSettedAlert();
+            return false;
         }
 
     }
