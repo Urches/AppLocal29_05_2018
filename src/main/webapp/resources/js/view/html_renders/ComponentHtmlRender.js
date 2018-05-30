@@ -89,6 +89,13 @@ class ComponentHtmlRender extends ElementHtmlRender {
                     htmlInPortsContainer.appendChild(this.portRender.getHtml());
                 } else div.appendChild(this.portRender.getHtml());
             });
+            if(delay.sameSideView){
+                //smell!
+                div.className += ' sameSideView';
+                div.setAttribute('style', "justify-content: space-around;\n" +
+                    "    /* align-items: center; */\n" +
+                    "    flex-direction: column;");
+            }
             return div;
         });
         return delaysHtml;

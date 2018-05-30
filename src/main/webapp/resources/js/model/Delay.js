@@ -4,5 +4,6 @@ class Delay extends PortedElement{
         this.type = 'delay';
         this.number = delayObj.number;
         this.delayTime = delayObj.delayTime;
+        this.sameSideView = false;
     }
 }

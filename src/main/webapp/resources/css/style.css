@@ -56,7 +56,7 @@ header {
 .general-list-style li {
     border-right: 1px solid black;
     margin-right: 0;
-    padding: 20px 20px;
+    padding: 10px 15px;
     text-decoration: none;
     color: #333333;
     font: 16px/1 Helvetica, Verdana, sans-serif;

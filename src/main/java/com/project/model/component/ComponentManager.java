@@ -19,21 +19,17 @@ public class ComponentManager {
         this.component = component;
     }
 
-    public Set<Port> getObservedPorts(){
+    public Set<Port> getObservedPorts() {
         Set<Port> ports = new LinkedHashSet<>();
         this.component.getElements().forEach(element -> {
             element.getPorts().forEach(port -> {
-                if(port.isObserved()){
+                if (port.isObserved()) {
                     ports.add(port);
                 }
             });
         });
         return ports;
     }
-
-//    public Set<Element> getGenerators(){
-//        return getElements(ElementType.GENERATOR);
-//    }
 
     public Set<Element> getElements(ElementType type) {
         return this.component.getElements().stream()
@@ -44,15 +40,16 @@ public class ComponentManager {
     public Element[][] getExecutionOrderedElements() {
         Set<Set<Element>> elements = new LinkedHashSet<>();
         Set<Element> layer = getFirstLayer();
-        while (!layer.isEmpty()){
+        while (!layer.isEmpty()) {
             elements.add(layer);
-            layer = getNextLayer(layer);
+            layer = getNextLayer(layer, elements);
         }
-        return elements.stream().map(el-> el.stream().toArray(Element[]::new)).toArray(Element[][]::new);
+        return elements.stream().map(el -> el.stream().toArray(Element[]::new)).toArray(Element[][]::new);
     }
 
     /**
      * Element stand in first layer if it haven't IN-ports or they are without signals
+     *
      * @return
      */
     public Set<Element> getFirstLayer() {
@@ -61,9 +58,9 @@ public class ComponentManager {
                     AtomicBoolean isEmpty = new AtomicBoolean(true);
 
                     element.getPorts().stream().forEach(port -> {
-                        if(port.getPosition() == PortPosition.IN){
+                        if (port.getPosition() == PortPosition.IN) {
                             Set<Signal> signals = getSignals(element.getNumber(), port.getNumber(), false);
-                            if(signals != null || !signals.isEmpty()){
+                            if (signals != null || !signals.isEmpty()) {
                                 isEmpty.set(false);
                             }
                         }
@@ -74,15 +71,10 @@ public class ComponentManager {
         return elements;
     }
 
-//    public Set<Element> getElementsWithEmptyPort(PortPosition position){
-//        component.getElements().stream().filter(element -> {
-//            element.getPorts().stream().filter(port -> port.getPosition().equals(position))
-//                    .
-//        })
-//    }
 
     /**
      * Element stand in last layer if it haven't OUT-ports or they are empty
+     *
      * @return
      */
     //public Set<Element> getLastLayer() {
@@ -106,41 +98,54 @@ public class ComponentManager {
 //        }
 //        return layer;
 //    }
-
-	public Set<Element> getNextLayer(Set<Element> prevLayer) {
-		Set<Element> layer = new LinkedHashSet<>();
-		for (Element element : prevLayer) {
-           // System.out.println(element);
+    public Set<Element> getNextLayer(Set<Element> prevLayer, Set<Set<Element>> elements) {
+        Set<Element> layer = new LinkedHashSet<>();
+        for (Element element : prevLayer) {
+            // System.out.println(element);
             element.getPorts().forEach(port -> {
-                if(PortPosition.OUT.equals(port.getPosition())){
+                if (PortPosition.OUT.equals(port.getPosition())) {
                     Set<Signal> filtredSignal = getSignals(element.getNumber(), port.getNumber(), true);
-                    if(!filtredSignal.isEmpty()) {
+                    if (!filtredSignal.isEmpty()) {
                         filtredSignal.forEach(signal -> {
                             Set<Element> linkedElements = getLinkedElements(signal, false);
-                            if(!linkedElements.isEmpty()){
-                                layer.addAll(linkedElements);
+                            if (!linkedElements.isEmpty()){
+                                linkedElements.stream()
+                                        .filter(elem -> !isElementInLayers(elem, elements))
+                                        .forEach(layer::add);
                             }
                         });
                     }
                 }
             });
-		}
-		return layer;
-	}
+        }
+        return layer;
+    }
 
     public Set<Signal> getSignals(int elementNumber, int portNumber, boolean isFrom) {
         return component.getSignals().stream().filter(signal -> {
-            if(isFrom){
+            if (isFrom) {
                 return signal.getFromElementNumber() == elementNumber && signal.getFromPortNumber() == portNumber;
             } else {
-//                System.out.println(signal);
                 return signal.getToElementNumber() == elementNumber && signal.getToPortNumber() == portNumber;
             }
         }).collect(Collectors.toSet());
     }
 
-    public Set<Element> getLinkedElements(Signal signal, boolean isFrom){
+    private Set<Element> getLinkedElements(Signal signal, boolean isFrom) {
         return component.getElements(isFrom ? signal.getFromElementNumber() : signal.getToElementNumber());
+    }
+
+    /**
+     * @param element
+     * @param elements
+     * @return true if element attend in one of the layers
+     */
+    private boolean isElementInLayers(Element element, Set<Set<Element>> elements) {
+        return elements.stream().anyMatch(elements1 -> isElementInLayer(element, elements1));
+    }
+
+    private boolean isElementInLayer(Element element, Set<Element> elements) {
+        return elements.contains(element);
     }
 
 //	public Set<Element> getElementsBySignal(Signal signal){
@@ -155,7 +160,6 @@ public class ComponentManager {
 //        });
 //        return filtredElements;
 //    }
-
 
 
 }

@@ -2,6 +2,7 @@ class ModalWindow {
     constructor(){
         this.modal = document.querySelector(".modal-window");
         this.scene = null;
+        this.onClose = new EventEmitter();
 
         this.modal.querySelector(".close").onclick = () => {
             this.scene.close();
@@ -34,5 +35,6 @@ class ModalWindow {
            this.modal.querySelector('.scene-container').removeChild(this.scene.container);
         }
         this.modal.style.display = "none";
+        this.onClose.notify();
     }
 }

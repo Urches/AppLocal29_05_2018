@@ -81,12 +81,21 @@ class Page {
     }
 
     saveDialog(){
-        let result = confirm('Совершённый изменеия будут потеряны! Хотите сохранить структуру ?');
-        if(result){
-            this.modalWindow.setScene(new SaveComponentScene(this.controller));
-            this.modalWindow.show();
+        this.modalWindow.setScene();
+        let confirm = new Confirm(this.modalWindow,
+            'Совершённый изменеия будут потеряны! Хотите сохранить структуру ?');
+        this.modalWindow.setScene(confirm);
+        this.modalWindow.show();
+        this.modalWindow.onClose.subscribe(confirmHandler);
+
+        function confirmHandler(){
+            //smell!
+            this.modalWindow.onClose.describe(confirmHandler);
+            if(confirm.result){
+                this.modalWindow.setScene(new SaveComponentScene(this.controller));
+                this.modalWindow.show();
+            }
         }
-        return result;
     }
 }
 
@@ -145,5 +154,36 @@ class Alert{
 
     save(){
         console.log('save');
+    }
+}
+
+class Confirm{
+    constructor(modalWindow, message) {
+        this.modalWindow = modalWindow;
+        this.message = message;
+        console.log(this.message);
+        this.container = null;
+        this.isShowed = false;
+        this.result = false;
+        this.container = document.querySelector('.alert-container').cloneNode(true);
+        //smell!
+        this.modalWindow.modal.querySelector(".saveBtn").value = "Сохранить";
+        this.modalWindow.modal.querySelector(".cancelBtn").value = "Отмена";
+    }
+
+    init(){
+        this.container.querySelector('.alert-message').innerText = this.message;
+    }
+
+    close(){
+        console.log('close');
+    }
+
+    cancel(){
+        this.result = false;
+    }
+
+    save(){
+        this.result = true;
     }
 }
