@@ -21,13 +21,4 @@ class ForeignComponent extends PortedElement{
         });
         console.log(this.ports);
     }
-
-    // toJSON(){
-    //     return {
-    //         number: this.number,
-    //         type:this.type,
-    //         description: this.description,
-    //         componentNumber: this.component
-    //     }
-    // }
 }

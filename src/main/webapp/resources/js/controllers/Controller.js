@@ -21,8 +21,6 @@ class Controller{
     //Component logic
     //rework!
     initFrontComponent(obj){
-        console.log(obj);
-        console.log(this);
         this.component = new Component(obj);
         //this.loadComponent(obj);
         this.onComponentLoad.notify(this.component);
@@ -30,7 +28,6 @@ class Controller{
 
     //smell!
     getComponentAjax(number, callback){
-        console.log('go ajax get component');
         $.get({
             url: `/controller/component/${number}`,
             dataType : "text",
@@ -143,7 +140,8 @@ class Controller{
                 console.log("Неудалось загрузить или построить диаграмму!");
                 self.onDiagramCancel.notify("Неудалось загрузить или построить диаграмму!");
             },
-            error: function () {
+            error: function (msg) {
+                console.log(msg);
                 console.log("Неудалось загрузить или построить диаграмму!");
                 self.onDiagramCancel.notify("Неудалось загрузить или построить диаграмму!");
             }

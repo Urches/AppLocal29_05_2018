@@ -29,7 +29,6 @@ class ChartView {
 
         document.querySelector('.chart-container').style.display = 'flex';
         this.showLoader();
-        //this.component = this.controller.getComponent();
         this.createSignalPropertiesHtml();
     }
 
@@ -66,10 +65,7 @@ class ChartView {
         let linesHtml = this.container.querySelector('.lines-container');
         diagramObj.diagram.forEach((diagramLine, index) => {
             let chartContainer = document.createElement('div');
-            console.log(chartContainer);
             chartContainer.className = 'line' + index;
-            console.log(diagramLine.time);
-            console.log(diagramLine.values);
             linesHtml.appendChild(chartContainer);
             diagramLine.values.unshift(diagramLine.title);
             diagramLine.time.unshift('time');

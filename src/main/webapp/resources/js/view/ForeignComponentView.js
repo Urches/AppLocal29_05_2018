@@ -53,6 +53,41 @@ class ForeignComponentView {
                 }
             );
         };
+
+        this.foreingComponent.getPorts().forEach(port => {
+            let htmlPortContainer = this._portGenerate(port);
+            if (port.position.toUpperCase() == 'IN') {
+                HtmlUtiles.prototype.insertAfter(htmlPortContainer, htmlContainer.querySelector('.in-ports-label'));
+            } else HtmlUtiles.prototype.insertAfter(htmlPortContainer, htmlContainer.querySelector('.out-port-label'));
+        });
+
         return htmlContainer;
+    }
+
+    _portGenerate(port) {
+        let htmlPortContainer = (port.position.toUpperCase() == 'IN') ?
+            document.querySelector('.in-port-container').cloneNode(true) :
+            document.querySelector('.out-port-container').cloneNode(true);
+
+        htmlPortContainer.className = port.number + '-number port-container';
+        if (port.position.toUpperCase() == 'OUT') htmlPortContainer.className += ' out-port';
+        htmlPortContainer.querySelector('.port-number-label').innerText += port.number;
+
+        //set port type
+        Array.from(htmlPortContainer.querySelector('.port-type-select').children).forEach(option => {
+            if (option.innerText.toUpperCase().includes()) {
+                option.setAttribute("select", "selected");
+            }
+        });
+
+        if (port.observed)
+            htmlPortContainer.querySelector('.observed-checkbox').checked = true;
+
+        htmlPortContainer.querySelector('.observed-checkbox').onclick = (e) => {
+            port.observed = htmlPortContainer.querySelector('.observed-checkbox').checked;
+            this.update();
+        };
+
+        return htmlPortContainer;
     }
 }

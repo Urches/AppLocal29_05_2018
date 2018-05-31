@@ -3,7 +3,7 @@ package com.project.model.connetions;
 import java.util.Arrays;
 
 public enum ConnectionType {
-	DIGITAL, LOGIC, INTERVAL;
+	DIGITAL, LOGIC, INTERVAL, TIME_INTERVAL;
 	
 	public static String[] names(){
 		String[] names = new String[ConnectionType.values().length];

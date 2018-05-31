@@ -713,6 +713,9 @@ label {
     min-width: 330px;
 }
 
+.generator-select {
+    margin-bottom: 5px;
+}
 /*.generator-select label {*/
     /*padding: 0 0 0 5px;*/
 /*}*/

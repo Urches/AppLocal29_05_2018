@@ -14,44 +14,6 @@ class NeuronPropertiesView {
         this.runWorriesView.setComponent(this.componentView.component);
     }
 
-    // getNeuronInfoObj() {
-    //     if (this.container) {
-    //         let index = this.container.querySelector('.af-properties-block select').selectedIndex;
-    //         let optionName = this.container.querySelector('.af-properties-block select option')[index];
-    //         console.log(optionName);
-    //         let activatedBlock = this.componentView.properties.getKeyByValue(this.componentView.properties.afTypes, optionName);
-    //         console.log(activatedBlock);
-    //
-    //         let ports = Array.from(this.container.querySelectorAll('.ports-properties-block .port-container')).map(portContainer =>
-    //             this._getPortInfoObj(portContainer));
-    //
-    //         let number = parseInt(this.container.className);
-    //
-    //         return {
-    //             number,
-    //             ports,
-    //             activatedBlock
-    //         };
-    //     } else {
-    //         return Object.assign({}, this.componentView.properties.defaultNeuronInfoObj);
-    //     }
-    // }
-
-    // _getPortInfoObj(portContainer) {
-    //     let index = portContainer.querySelector('select').selectedIndex;
-    //     let optionName = portContainer.querySelectorAll('select option')[index];
-    //     console.log(optionName);
-    //     let key = this.componentView.properties.getKeyByValue(this.componentView.properties.signalTypes, optionName);
-    //     console.log(key);
-    //
-    //     return {
-    //         observed: portContainer.querySelector('.observed-checkbox').checked,
-    //         number: parseInt(portContainer.className),
-    //         type: key,
-    //         position: portContainer.className.includes('out-port') ? 'out' : 'in'
-    //     }
-    // }
-
     show() {
         this.container = this._containerGenerate();
         //change!
@@ -154,17 +116,15 @@ class NeuronPropertiesView {
         let checkedOption = Array.from(htmlPortContainer.querySelector('.port-type-select').children)
             .find(option => this.componentView.properties.getKeyByValue(this.componentView.properties.signalTypes, option.innerText) == port.type);
 
-        console.log(checkedOption);
         checkedOption.setAttribute('selected','selected');
-
-        if (port.observed)
+        if (port.observed){
             htmlPortContainer.querySelector('.observed-checkbox').checked = true;
+        }
 
             htmlPortContainer.querySelector('.observed-checkbox').onclick = (e) => {
                 port.observed = htmlPortContainer.querySelector('.observed-checkbox').checked;
                 this.update();
             };
-
 
         if (htmlPortContainer.querySelector('.fa-times.close')) {
             htmlPortContainer.querySelector('.fa-times.close').onclick = (e) => {
