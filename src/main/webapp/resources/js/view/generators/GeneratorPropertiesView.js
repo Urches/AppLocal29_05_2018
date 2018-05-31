@@ -123,7 +123,7 @@ class GeneratorPropertiesView {
             obj.properties = {};
         }
         let options = this.container.querySelectorAll('.generator-select .generators-type option');
-        let signalOptions = this.container.querySelectorAll('.generator-select .signals-type option');
+        let signalOptions = this.container.querySelectorAll('.signals-type option');
 
         let option = Array.from(options).find(option => option.selected == true);
         let signalOption = Array.from(signalOptions).find(option => option.selected == true);

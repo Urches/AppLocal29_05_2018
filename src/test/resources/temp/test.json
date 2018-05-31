@@ -1,0 +1,299 @@
+{
+  "elements": [
+    {
+      "ports": [
+        {
+          "position": "out",
+          "number": 1,
+          "type": "digital"
+        }
+      ],
+      "number": 4,
+      "type": "generator",
+      "properties": {
+        "type": "static",
+        "value": "0"
+      }
+    },
+    {
+      "ports": [
+        {
+          "position": "out",
+          "number": 1,
+          "type": "digital"
+        }
+      ],
+      "number": 5,
+      "type": "generator",
+      "properties": {
+        "type": "asymmetrical",
+        "value": 0,
+        "values": [
+          {
+            "fromTime": "0",
+            "toTime": "20",
+            "value": "6"
+          },
+          {
+            "fromTime": "20",
+            "toTime": "40",
+            "value": "0"
+          },
+          {
+            "fromTime": "40",
+            "toTime": "50",
+            "value": "8"
+          },
+          {
+            "fromTime": "50",
+            "toTime": "70",
+            "value": "2"
+          }
+        ]
+      }
+    },
+    {
+      "ports": [
+        {
+          "position": "out",
+          "number": 1,
+          "type": "digital"
+        }
+      ],
+      "number": 6,
+      "type": "generator",
+      "properties": {
+        "type": "static",
+        "value": "10",
+        "values": [
+          {
+            "fromTime": "0",
+            "toTime": "20",
+            "value": "6"
+          },
+          {
+            "fromTime": "20",
+            "toTime": "40",
+            "value": "0"
+          },
+          {
+            "fromTime": "40",
+            "toTime": "50",
+            "value": "8"
+          },
+          {
+            "fromTime": "50",
+            "toTime": "70",
+            "value": "2"
+          }
+        ]
+      }
+    },
+    {
+      "ports": [
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 1
+        },
+        {
+          "position": "out",
+          "type": "digital",
+          "number": 2
+        }
+      ],
+      "type": "delay",
+      "number": 7,
+      "delayTime": 20,
+      "sameSideView": false
+    },
+    {
+      "ports": [
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 1
+        },
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 2
+        },
+        {
+          "position": "out",
+          "type": "digital",
+          "number": 3,
+          "observed": true
+        }
+      ],
+      "type": "neuron",
+      "number": 1,
+      "activatedBlock": "threshold"
+    },
+    {
+      "ports": [
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 1
+        },
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 2
+        },
+        {
+          "position": "out",
+          "type": "digital",
+          "number": 3,
+          "observed": true
+        }
+      ],
+      "type": "neuron",
+      "number": 2,
+      "activatedBlock": "linear"
+    },
+    {
+      "ports": [
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 1
+        },
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 2
+        },
+        {
+          "position": "out",
+          "type": "digital",
+          "number": 3,
+          "observed": true
+        },
+        {
+          "position": "in",
+          "type": "digital",
+          "number": 4
+        }
+      ],
+      "type": "neuron",
+      "number": 3,
+      "activatedBlock": "linear"
+    }
+  ],
+  "signals": [
+    {
+      "fromElement": 4,
+      "fromPort": 1,
+      "toElement": 1,
+      "toPort": 1,
+      "isFromPrepared": true,
+      "isToPrepared": true,
+      "signalNumber": "4111"
+    },
+    {
+      "fromElement": 5,
+      "fromPort": 1,
+      "toElement": 1,
+      "toPort": 2,
+      "isFromPrepared": true,
+      "isToPrepared": true,
+      "signalNumber": "5112"
+    },
+    {
+      "fromElement": 5,
+      "fromPort": 1,
+      "toElement": 2,
+      "toPort": 1,
+      "isFromPrepared": true,
+      "isToPrepared": true,
+      "signalNumber": "5121"
+    },
+    {
+      "fromElement": 6,
+      "fromPort": 1,
+      "toElement": 2,
+      "toPort": 2,
+      "isFromPrepared": true,
+      "isToPrepared": true,
+      "signalNumber": "6122"
+    },
+    {
+      "fromElement": 2,
+      "fromPort": 3,
+      "toElement": 3,
+      "toPort": 2,
+      "isFromPrepared": true,
+      "isToPrepared": true,
+      "signalNumber": "2332"
+    },
+    {
+      "fromElement": 1,
+      "fromPort": 3,
+      "toElement": 3,
+      "toPort": 1,
+      "isFromPrepared": true,
+      "isToPrepared": true,
+      "signalNumber": "1331"
+    },
+    {
+      "fromElement": 3,
+      "fromPort": 3,
+      "toElement": 7,
+      "toPort": 1,
+      "isFromPrepared": true,
+      "isToPrepared": true,
+      "signalNumber": "3371"
+    },
+    {
+      "fromElement": 7,
+      "fromPort": 2,
+      "toElement": 3,
+      "toPort": 4,
+      "isFromPrepared": true,
+      "isToPrepared": true,
+      "signalNumber": "7234"
+    }
+  ],
+  "coordinates": [
+    {
+      "number": 1,
+      "xAxis": 766,
+      "yAxis": 221
+    },
+    {
+      "number": 2,
+      "xAxis": 776,
+      "yAxis": 416
+    },
+    {
+      "number": 3,
+      "xAxis": 983,
+      "yAxis": 296
+    },
+    {
+      "number": 4,
+      "xAxis": 566,
+      "yAxis": 176
+    },
+    {
+      "number": 5,
+      "xAxis": 572,
+      "yAxis": 329
+    },
+    {
+      "number": 6,
+      "xAxis": 573,
+      "yAxis": 495
+    },
+    {
+      "number": 7,
+      "xAxis": 1125,
+      "yAxis": 350
+    }
+  ],
+  "number": 20014,
+  "isNew": true,
+  "description": "Test view"
+}
